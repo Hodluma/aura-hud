@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Rajdhani', sans-serif;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: transparent;
+  user-select: none;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+.hud-theme-dark {
+  --hud-bg: rgba(15, 15, 30, 0.8);
+  --hud-panel: rgba(20, 20, 30, 0.95);
+  --hud-accent: #4f46e5;
+  --hud-text: #f8fafc;
+}
+
+.hud-theme-neon {
+  --hud-bg: rgba(0, 20, 25, 0.8);
+  --hud-panel: rgba(0, 30, 35, 0.95);
+  --hud-accent: #00f3ff;
+  --hud-text: #e0faff;
+  text-shadow: 0 0 8px rgba(0, 255, 242, 0.8);
+}
+
+.hud-root {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--hud-text);
+}
+
+.hud-panel {
+  background: var(--hud-bg);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hud-map-strip {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 520px;
+  height: 130px;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 100%, rgba(79, 70, 229, 0.45), transparent 65%);
+  mask: radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.85), transparent 65%);
+}
+
+.bar-container {
+  @apply flex flex-col gap-1;
+}
+
+.bar {
+  @apply w-full h-2 rounded-full bg-slate-700/50 overflow-hidden;
+}
+
+.bar-fill {
+  @apply h-full transition-all ease-out;
+  background: linear-gradient(90deg, rgba(79, 70, 229, 0.9), rgba(59, 130, 246, 0.9));
+}
+
+.hud-theme-neon .bar-fill {
+  background: linear-gradient(90deg, rgba(0, 255, 242, 0.9), rgba(59, 130, 246, 0.7));
+}
+
+.voice-indicator {
+  @apply flex items-center gap-2;
+}
+
+.voice-indicator .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: rgba(148, 163, 184, 0.7);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.voice-indicator.talking .dot {
+  background: var(--hud-accent);
+  transform: scale(1.4);
+  box-shadow: 0 0 12px var(--hud-accent);
+}
+
+.voice-bars {
+  display: flex;
+  gap: 4px;
+  align-items: flex-end;
+}
+
+.voice-bars span {
+  width: 4px;
+  border-radius: 9999px;
+  background: rgba(148, 163, 184, 0.6);
+  transition: height 0.2s ease, background 0.2s ease;
+}
+
+.voice-bars.talking span {
+  background: var(--hud-accent);
+  box-shadow: 0 0 8px var(--hud-accent);
+}
+
+.settings-panel {
+  pointer-events: auto;
+}
